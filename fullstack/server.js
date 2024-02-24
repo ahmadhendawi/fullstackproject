@@ -8,6 +8,27 @@ var host=server.address().address
 var port=server.address().port
 })
 
+const {MongoClient}=require('mongodb')
+var connection="mongodb+srv://ahmadhendawi:B2yoNUb5pDl7nGGM@cluster0.uswjlnp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+const client= new MongoClient(connection)
+
+const mydb= client.db('test')
+
+const collection= mydb.collection('users')
+
+app.get("/users", async(req,res)=>{
+    const users=await collection.find({}).toArray()
+    res.send(users)
+})
+
+app.get("/user/:Username", async(req,res)=>{
+    const users= await collection.findOne({'Username':req.params.Username})
+    res.send(users)
+}
+
+)
+
 app.get('/',function(req,res){
     res.send("start server")
     })

@@ -2,7 +2,6 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 
-var result=res.json
 class App extends React.Component
 {
   constructor (props){
